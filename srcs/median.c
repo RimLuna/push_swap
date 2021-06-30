@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   median.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbougssi <rbougssi@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: rbougssi <rbougssi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 19:02:56 by rbougssi          #+#    #+#             */
-/*   Updated: 2021/06/29 19:02:56 by rbougssi         ###   ########.fr       */
+/*   Updated: 2021/06/30 09:28:25 by rbougssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	rot_direction(int *tab, int size, int mediane)
+int	rot_direction(int *tab, int size, int median)
 {
 	int	left;
 	int	right;
@@ -21,10 +21,10 @@ int	rot_direction(int *tab, int size, int mediane)
 	i = 0;
 	left = 0;
 	right = 0;
-	while (tab[i++] > mediane)
+	while (tab[i++] > median)
 		left++;
 	i = size - 1;
-	while (tab[i--] > mediane)
+	while (tab[i--] > median)
 		right++;
 	return (right >= left);
 }

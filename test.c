@@ -40,18 +40,18 @@ int     mid(int a, int b, int c)
 
 int     med(int *a, int len)
 {
-    int mediane;
+    int median;
     int i;
 
     i = 0;
-    mediane = a[i];
+    median = a[i];
     while (i < len - 2)
     {
-        mediane = mid(mediane, a[i + 1], a[i + 2]);
-        printf("med = %d\n", mediane);
+        median = mid(median, a[i + 1], a[i + 2]);
+        printf("med = %d\n", median);
         i += 2;
     }
-    return (mediane);
+    return (median);
 }
 
 int main()

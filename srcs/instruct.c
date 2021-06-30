@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   instruct.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbougssi <rbougssi@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: rbougssi <rbougssi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 19:02:34 by rbougssi          #+#    #+#             */
-/*   Updated: 2021/06/29 19:02:34 by rbougssi         ###   ########.fr       */
+/*   Updated: 2021/06/30 09:35:51 by rbougssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ss(t_ps *ps)
 
 void	pa(t_ps *ps)
 {
-	int i;
+	int	i;
 
 	if (ps->size_b)
 	{
@@ -51,7 +51,7 @@ void	pa(t_ps *ps)
 
 void	pb(t_ps *ps)
 {
-	int i;
+	int	i;
 
 	if (ps->size_a)
 	{

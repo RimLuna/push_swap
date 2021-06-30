@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   helper.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbougssi <rbougssi@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: rbougssi <rbougssi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 19:02:12 by rbougssi          #+#    #+#             */
-/*   Updated: 2021/06/29 19:02:13 by rbougssi         ###   ########.fr       */
+/*   Updated: 2021/06/30 09:32:20 by rbougssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		ft_isdigit(int c)
+int	ft_isdigit(int c)
 {
 	return ((c >= 48 && c <= 57));
 }
 
 void	swap(int *a, int *b)
 {
-	int c;
+	int	c;
 
 	c = *a;
 	*a = *b;
@@ -28,8 +28,8 @@ void	swap(int *a, int *b)
 
 int	count_int(char *av)
 {
-	int i;
-	int n;
+	int	i;
+	int	n;
 
 	i = 0;
 	n = 0;

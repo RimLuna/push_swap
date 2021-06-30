@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   instruct2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbougssi <rbougssi@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: rbougssi <rbougssi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 19:02:44 by rbougssi          #+#    #+#             */
-/*   Updated: 2021/06/29 19:02:44 by rbougssi         ###   ########.fr       */
+/*   Updated: 2021/06/30 09:36:11 by rbougssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	rra(int **a, int size_a, char what)
 {
-	int tmp;
-	int i;
+	int	tmp;
+	int	i;
 
 	if (size_a)
 	{
@@ -42,7 +42,7 @@ void	rrr(t_ps *ps)
 
 void	ra(int **a, int size_a, char what)
 {
-	int tmp;
+	int	tmp;
 	int	i;
 
 	if (size_a)

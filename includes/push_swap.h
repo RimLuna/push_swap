@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbougssi <rbougssi@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: rbougssi <rbougssi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 04:33:51 by rbougssi          #+#    #+#             */
-/*   Updated: 2021/06/30 04:33:51 by rbougssi         ###   ########.fr       */
+/*   Updated: 2021/06/30 09:40:11 by rbougssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-typedef struct	s_ps
+typedef struct s_ps
 {
 	int	*a;
 	int	*b;
-	int size_a;
-	int size_b;
+	int	size_a;
+	int	size_b;
 }				t_ps;
 
 int				sorted(t_ps ps);
@@ -37,11 +37,11 @@ void			rrr(t_ps *ps);
 void			a2b(t_ps *ps, int len);
 void			b2a(t_ps *ps, int len);
 int				sorted(t_ps ps);
-int				rot_direction(int *tab, int size, int mediane);
+int				rot_direction(int *tab, int size, int median);
 int				get_median(int *a, int len);
 void			smol(t_ps *ps, int pb);
-void        	excit(t_ps *ps);
-void        	ff(t_ps *ps);
+void			excit(t_ps *ps);
+void			ff(t_ps *ps);
 void			swap(int *a, int *b);
 int				ft_isdigit(int c);
 int				count_int(char *av);

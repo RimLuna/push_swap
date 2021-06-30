@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbougssi <rbougssi@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: rbougssi <rbougssi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 04:33:09 by rbougssi          #+#    #+#             */
-/*   Updated: 2021/06/30 04:33:10 by rbougssi         ###   ########.fr       */
+/*   Updated: 2021/06/30 09:38:53 by rbougssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	arg_check(char **av)
 {
-	int i;
-	int j;
-	int n;
+	int	i;
+	int	j;
+	int	n;
 
 	j = 1;
 	n = 0;
@@ -26,8 +26,9 @@ int	arg_check(char **av)
 		while (av[j][i])
 		{
 			if ((!ft_isdigit(av[j][i]) && (av[j][i] != ' '
-			&& av[j][i] != '-')) || (av[j][i + 1] == '-' && ft_isdigit(av[j][i]))
-			|| (av[j][i] == '-' && (!av[j][i + 1] || av[j][i + 1] == ' ')))
+				&& av[j][i] != '-')) || (av[j][i + 1] == '-' &&
+				ft_isdigit(av[j][i]))
+				|| (av[j][i] == '-' && (!av[j][i + 1] || av[j][i + 1] == ' ')))
 				return (0);
 			i++;
 		}
@@ -48,10 +49,12 @@ int	ps_check(t_ps *ps, int ac, char **av)
 	}
 	else
 	{
-		if (!(ps->a = (int*)malloc(sizeof(int) * arg_check(av))))
+		ps->a = (int *)malloc(sizeof(int) * arg_check(av));
+		if (!ps->a)
 			excit(ps);
 		ps->size_a = arg_check(av);
-		if (!(ps->b = (int*)malloc(sizeof(int) * arg_check(av))))
+		ps->b = (int *)malloc(sizeof(int) * arg_check(av));
+		if (!ps->b)
 			excit(ps);
 		ps->size_b = 0;
 		if (!init(av, ps->a))
@@ -62,7 +65,7 @@ int	ps_check(t_ps *ps, int ac, char **av)
 
 int	sorted(t_ps ps)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < ps.size_a - 1)
@@ -77,7 +80,7 @@ int	sorted(t_ps ps)
 
 int	main(int ac, char **av)
 {
-	t_ps		ps;
+	t_ps	ps;
 
 	ps.a = NULL;
 	ps.b = NULL;

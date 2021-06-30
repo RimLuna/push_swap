@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   algo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbougssi <rbougssi@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: rbougssi <rbougssi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 19:01:27 by rbougssi          #+#    #+#             */
-/*   Updated: 2021/06/29 19:01:30 by rbougssi         ###   ########.fr       */
+/*   Updated: 2021/06/30 09:28:12 by rbougssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push2a(t_ps *ps, int len, int mediane)
+void	push2a(t_ps *ps, int len, int median)
 {
 	int	turn;
 	int	pushed;
@@ -21,11 +21,11 @@ void	push2a(t_ps *ps, int len, int mediane)
 	pushed = 0;
 	while (pushed < (len / 2))
 	{
-		if (ps->b[0] > mediane && pushed++ > -1)
+		if (ps->b[0] > median && pushed++ > -1)
 			pa(ps);
 		else
 		{
-			if (rot_direction(ps->b, ps->size_b, mediane))
+			if (rot_direction(ps->b, ps->size_b, median))
 				ra(&ps->b, ps->size_b, 'b');
 			else
 				rra(&ps->b, ps->size_b, 'b');
@@ -40,7 +40,7 @@ void	push2a(t_ps *ps, int len, int mediane)
 void	b2a(t_ps *ps, int len)
 {
 	int	i;
-	int	mediane;
+	int	median;
 
 	i = -1;
 	if (len <= 2)
@@ -52,28 +52,27 @@ void	b2a(t_ps *ps, int len)
 	}
 	else
 	{
-		mediane = get_median(ps->b, len);
-		push2a(ps, len, mediane);
+		median = get_median(ps->b, len);
+		push2a(ps, len, median);
 		a2b(ps, len / 2);
 		b2a(ps, len / 2 + len % 2);
 	}
 }
 
-
-void	push2b(t_ps *ps, int len, int mediane)
+void	push2b(t_ps *ps, int len, int median)
 {
-	int pushed;
-	int turn;
+	int	pushed;
+	int	turn;
 
 	pushed = 0;
 	turn = 0;
 	while (pushed < (len / 2 + len % 2))
 	{
-		if (ps->a[0] <= mediane && pushed++ > -1)
+		if (ps->a[0] <= median && pushed++ > -1)
 			pb(ps);
 		else
 		{
-			if (rot_direction(ps->a, ps->size_a, mediane))
+			if (rot_direction(ps->a, ps->size_a, median))
 				ra(&ps->a, ps->size_a, 'a');
 			else
 				rra(&ps->a, ps->size_a, 'a');
@@ -87,12 +86,12 @@ void	push2b(t_ps *ps, int len, int mediane)
 
 void	a2b(t_ps *ps, int len)
 {
-	int mediane;
+	int	median;
 
 	if (sorted(*ps))
 		return ;
-	mediane = get_median(ps->a, len);
-	push2b(ps, len, mediane);
+	median = get_median(ps->a, len);
+	push2b(ps, len, median);
 	a2b(ps, len / 2);
 	b2a(ps, len / 2 + len % 2);
 }
