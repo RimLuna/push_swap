@@ -12,6 +12,34 @@
 
 #include "push_swap.h"
 
+int	get_median(int *a, int len)
+{
+	int	i;
+	int	j;
+	int	upper;
+	int	lower;
+
+	j = 0;
+	while (j < len)
+	{
+		upper = 0;
+		lower = 0;
+		i = 0;
+		while (i < len)
+		{
+			if (a[i] < a[j])
+				lower++;
+			else if (a[i] > a[j])
+				upper++;
+			i++;
+		}
+		if (lower == upper || lower + 1 == upper)
+			return (a[j]);
+		j++;
+	}
+	return (0);
+}
+
 void	smowl(t_ps *ps)
 {
 	if (ps->a[0] > ps->a[1])
