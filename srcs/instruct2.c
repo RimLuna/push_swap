@@ -6,13 +6,13 @@
 /*   By: rbougssi <rbougssi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 19:02:44 by rbougssi          #+#    #+#             */
-/*   Updated: 2021/07/04 15:58:32 by rbougssi         ###   ########.fr       */
+/*   Updated: 2021/07/04 22:59:24 by rbougssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rra(int **a, int size_a, char what, t_lst **inst)
+void	rra(int **a, int size_a, char what, t_ps *ps)
 {
 	int	tmp;
 	int	i;
@@ -27,22 +27,26 @@ void	rra(int **a, int size_a, char what, t_lst **inst)
 	}
 	if (what)
 	{
-		(*inst)->next = (t_lst *)malloc(sizeof(t_lst));
-		(*inst) = (*inst)->next;
-		(*inst)->str[0] = 'r';
-		(*inst)->str[1] = 'r';
-		(*inst)->str[2] = what;
-		(*inst)->str[3] = '\n';
-		(*inst)->str[4] = '\0';
-		(*inst)->next = NULL;
+		ps->inst->next = (t_lst *)malloc(sizeof(t_lst));
+		if (!ps->inst->next)
+			excit(ps);
+		ps->inst = ps->inst->next;
+		ps->inst->str[0] = 'r';
+		ps->inst->str[1] = 'r';
+		ps->inst->str[2] = what;
+		ps->inst->str[3] = '\n';
+		ps->inst->str[4] = '\0';
+		ps->inst->next = NULL;
 	}
 }
 
 void	rrr(t_ps *ps)
 {
-	rra(&ps->a, ps->size_a, 0, &ps->inst);
-	rra(&ps->b, ps->size_b, 0, &ps->inst);
+	rra(&ps->a, ps->size_a, 0, ps);
+	rra(&ps->b, ps->size_b, 0, ps);
 	ps->inst->next = (t_lst *)malloc(sizeof(t_lst));
+	if (!ps->inst->next)
+		excit(ps);
 	ps->inst = ps->inst->next;
 	ps->inst->str[0] = 'r';
 	ps->inst->str[1] = 'r';
@@ -52,7 +56,7 @@ void	rrr(t_ps *ps)
 	ps->inst->next = NULL;
 }
 
-void	ra(int **a, int size_a, char what, t_lst **inst)
+void	ra(int **a, int size_a, char what, t_ps *ps)
 {
 	int	tmp;
 	int	i;
@@ -67,22 +71,26 @@ void	ra(int **a, int size_a, char what, t_lst **inst)
 	}
 	if (what)
 	{
-		(*inst)->next = (t_lst *)malloc(sizeof(t_lst));
-		(*inst) = (*inst)->next;
-		(*inst)->str[0] = 'r';
-		(*inst)->str[1] = what;
-		(*inst)->str[2] = '\n';
-		(*inst)->str[3] = '\0';
-		(*inst)->next = NULL;
+		ps->inst->next = (t_lst *)malloc(sizeof(t_lst));
+		if (!ps->inst->next)
+			excit(ps);
+		ps->inst = ps->inst->next;
+		ps->inst->str[0] = 'r';
+		ps->inst->str[1] = what;
+		ps->inst->str[2] = '\n';
+		ps->inst->str[3] = '\0';
+		ps->inst->next = NULL;
 
 	}
 }
 
 void	rr(t_ps *ps)
 {
-	ra(&ps->a, ps->size_a, 0, &ps->inst);
-	ra(&ps->b, ps->size_b, 0, &ps->inst);
+	ra(&ps->a, ps->size_a, 0, ps);
+	ra(&ps->b, ps->size_b, 0, ps);
 	ps->inst->next = (t_lst *)malloc(sizeof(t_lst));
+	if (!ps->inst->next)
+		excit(ps);
 	ps->inst = ps->inst->next;
 	ps->inst->str[0] = 'r';
 	ps->inst->str[1] = 'r';

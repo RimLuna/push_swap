@@ -6,7 +6,7 @@
 /*   By: rbougssi <rbougssi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 19:01:27 by rbougssi          #+#    #+#             */
-/*   Updated: 2021/07/04 03:56:14 by rbougssi         ###   ########.fr       */
+/*   Updated: 2021/07/04 22:48:38 by rbougssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,15 @@ void	push2a(t_ps *ps, int len, int median)
 		else
 		{
 			if (rot_direction(ps->b, ps->size_b, median))
-				ra(&ps->b, ps->size_b, 'b', &ps->inst);
+				ra(&ps->b, ps->size_b, 'b', ps);
 			else
-				rra(&ps->b, ps->size_b, 'b', &ps->inst);
+				rra(&ps->b, ps->size_b, 'b', ps);
 			turn++;
 		}
 	}
 	if (len / 2 + len % 2 != ps->size_b)
 		while (turn-- > 0)
-			rra(&ps->b, ps->size_b, 'b', &ps->inst);
+			rra(&ps->b, ps->size_b, 'b', ps);
 }
 
 void	b2a(t_ps *ps, int len)
@@ -46,7 +46,7 @@ void	b2a(t_ps *ps, int len)
 	if (len <= 2)
 	{
 		if (len == 2 && ps->b[0] < ps->b[1])
-			sa(&ps->b, ps->size_b, 'b', &ps->inst);
+			sa(&ps->b, ps->size_b, 'b', ps);
 		while (++i < len)
 			pa(ps);
 	}
@@ -73,15 +73,15 @@ void	push2b(t_ps *ps, int len, int median)
 		else
 		{
 			if (rot_direction(ps->a, ps->size_a, median))
-				ra(&ps->a, ps->size_a, 'a', &ps->inst);
+				ra(&ps->a, ps->size_a, 'a', ps);
 			else
-				rra(&ps->a, ps->size_a, 'a', &ps->inst);
+				rra(&ps->a, ps->size_a, 'a', ps);
 			turn++;
 		}
 	}
 	if (len / 2 != ps->size_a)
 		while (turn-- > 0)
-			rra(&ps->a, ps->size_a, 'a', &ps->inst);
+			rra(&ps->a, ps->size_a, 'a', ps);
 }
 
 void	a2b(t_ps *ps, int len)

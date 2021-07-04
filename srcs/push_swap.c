@@ -6,7 +6,7 @@
 /*   By: rbougssi <rbougssi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 04:33:09 by rbougssi          #+#    #+#             */
-/*   Updated: 2021/07/04 17:42:01 by rbougssi         ###   ########.fr       */
+/*   Updated: 2021/07/04 23:19:54 by rbougssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,13 +93,6 @@ t_lst*	change(t_lst *first, int c, char t, char r)
 		last = first;
 		first = first->next;
 	}
-	if (!first)
-		return (first);
-	while (first && first->str[0] == 's')
-	{
-		last = first;
-		first = first->next;
-	}
 	while (first && first->str[0] == 'r' && first->str[c] == r && i)
 	{
 		i--;
@@ -118,7 +111,7 @@ t_lst*	check(t_lst *first)
 	int c;
 	char t;
 	char r;
-	//printf("1\n");
+
 	if (first->str[1] == 'r')
 	{
 		c = 2;
@@ -133,7 +126,6 @@ t_lst*	check(t_lst *first)
 		r = 'b';
 	else
 		r = 'a';
-	//printf("3\n");
 	return (change(first, c, t, r));
 }
 
@@ -141,14 +133,24 @@ void	less(t_lst *first)
 {
 	while (first)
 	{
-		//printf("2\n");
 		if (first->str[0] == 'r')
 			first = check(first);
 		if (first)		
 			first = first->next;
-		//printf("4\n");
 	}
 
+}
+
+void last(t_lst *first)
+{
+	less(first);
+	while (first->next)
+	{
+		first = first->next;
+		int i = -1;
+		while (first->str[++i] != 0)
+			write(1, &first->str[i], 1);
+	}
 }
 
 int	main(int ac, char **av)
@@ -161,29 +163,17 @@ int	main(int ac, char **av)
 	ps.inst = (t_lst *)malloc(sizeof(t_lst));
 	ps.inst->next = NULL;
 	first = ps.inst;
+	ps.first = first;
 	if (ac < 2 || !ps_check(&ps, av))
 		return (0);
 	if (sorted(ps))
 		return (0);
 	ps.ikhane = 15 + ps.size_a / 20;
 	if (ps.size_a <= 5)
-		smol(&ps, 0);
-	else if (ps.size_a <= 15)
-		{
-			sorta(&ps);
-			ps.ikhane = 5;
-			while (ps.size_a)
-				pb(&ps);
-			push7(&ps, ps.size_b);
-		}
+		imzine(&ps, 0);
 	else
-			akhor(&ps);
-	less(first);
-	while (first->next)
-	{
-		first = first->next;
-		printf("%s", first->str);
-	}
+		algikhane(&ps);
+	last(first);
 	ff(&ps);
 	return (0);
 }

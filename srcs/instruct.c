@@ -6,33 +6,37 @@
 /*   By: rbougssi <rbougssi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 19:02:34 by rbougssi          #+#    #+#             */
-/*   Updated: 2021/07/04 03:47:33 by rbougssi         ###   ########.fr       */
+/*   Updated: 2021/07/04 23:00:29 by rbougssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sa(int **a, int size_a, char what, t_lst **inst)
+void	sa(int **a, int size_a, char what, t_ps *ps)
 {
 	if (size_a)
 		swap(&a[0][0], &a[0][1]);
 	if (what)
 	{
-		(*inst)->next = (t_lst *)malloc(sizeof(t_lst));
-		(*inst) = (*inst)->next; 
-		(*inst)->str[0] = 's';
-		(*inst)->str[1] = what;
-		(*inst)->str[2] = '\n';
-		(*inst)->str[3] = '\0';
-		(*inst)->next = NULL;
+		ps->inst->next = (t_lst *)malloc(sizeof(t_lst));
+		if (!ps->inst->next)
+			excit(ps);
+		ps->inst = ps->inst->next; 
+		ps->inst->str[0] = 's';
+		ps->inst->str[1] = what;
+		ps->inst->str[2] = '\n';
+		ps->inst->str[3] = '\0';
+		ps->inst->next = NULL;
 	}
 }
 
 void	ss(t_ps *ps)
 {
-	sa(&ps->a, ps->size_a, 0, &ps->inst);
-	sa(&ps->b, ps->size_b, 0, &ps->inst);
+	sa(&ps->a, ps->size_a, 0, ps);
+	sa(&ps->b, ps->size_b, 0, ps);
 	ps->inst->next = (t_lst *)malloc(sizeof(t_lst));
+	if (!ps->inst->next)
+		excit(ps);
 	ps->inst = ps->inst->next; 
 	ps->inst->str[0] = 's';
 	ps->inst->str[1] = 's';
@@ -57,6 +61,8 @@ void	pa(t_ps *ps)
 		ps->size_b--;
 	}
 	ps->inst->next = (t_lst *)malloc(sizeof(t_lst));
+	if (!ps->inst->next)
+		excit(ps);
 	ps->inst = ps->inst->next; 
 	ps->inst->str[0] = 'p';
 	ps->inst->str[1] = 'a';
@@ -81,6 +87,8 @@ void	pb(t_ps *ps)
 		ps->size_a--;
 	}
 	ps->inst->next = (t_lst *)malloc(sizeof(t_lst));
+	if (!ps->inst->next)
+		excit(ps);
 	ps->inst = ps->inst->next; 
 	ps->inst->str[0] = 'p';
 	ps->inst->str[1] = 'b';
