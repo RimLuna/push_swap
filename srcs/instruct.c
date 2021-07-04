@@ -3,32 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   instruct.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbougssi <rbougssi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rbougssi <rbougssi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 19:02:34 by rbougssi          #+#    #+#             */
-/*   Updated: 2021/06/30 09:35:51 by rbougssi         ###   ########.fr       */
+/*   Updated: 2021/07/04 03:47:33 by rbougssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sa(int **a, int size_a, char what)
+void	sa(int **a, int size_a, char what, t_lst **inst)
 {
 	if (size_a)
 		swap(&a[0][0], &a[0][1]);
 	if (what)
 	{
-		write(1, "s", 1);
-		write(1, &what, 1);
-		write(1, "\n", 1);
+		(*inst)->next = (t_lst *)malloc(sizeof(t_lst));
+		(*inst) = (*inst)->next; 
+		(*inst)->str[0] = 's';
+		(*inst)->str[1] = what;
+		(*inst)->str[2] = '\n';
+		(*inst)->str[3] = '\0';
+		(*inst)->next = NULL;
 	}
 }
 
 void	ss(t_ps *ps)
 {
-	sa(&ps->a, ps->size_a, 0);
-	sa(&ps->b, ps->size_b, 0);
-	write(1, "ss\n", 3);
+	sa(&ps->a, ps->size_a, 0, &ps->inst);
+	sa(&ps->b, ps->size_b, 0, &ps->inst);
+	ps->inst->next = (t_lst *)malloc(sizeof(t_lst));
+	ps->inst = ps->inst->next; 
+	ps->inst->str[0] = 's';
+	ps->inst->str[1] = 's';
+	ps->inst->str[2] = '\n';
+	ps->inst->str[3] = '\0';
+	ps->inst->next = NULL;
 }
 
 void	pa(t_ps *ps)
@@ -46,7 +56,13 @@ void	pa(t_ps *ps)
 			ps->b[i] = ps->b[i + 1];
 		ps->size_b--;
 	}
-	write(1, "pa\n", 3);
+	ps->inst->next = (t_lst *)malloc(sizeof(t_lst));
+	ps->inst = ps->inst->next; 
+	ps->inst->str[0] = 'p';
+	ps->inst->str[1] = 'a';
+	ps->inst->str[2] = '\n';
+	ps->inst->str[3] = '\0';
+	ps->inst->next = NULL;
 }
 
 void	pb(t_ps *ps)
@@ -64,5 +80,11 @@ void	pb(t_ps *ps)
 			ps->a[i] = ps->a[i + 1];
 		ps->size_a--;
 	}
-	write(1, "pb\n", 3);
+	ps->inst->next = (t_lst *)malloc(sizeof(t_lst));
+	ps->inst = ps->inst->next; 
+	ps->inst->str[0] = 'p';
+	ps->inst->str[1] = 'b';
+	ps->inst->str[2] = '\n';
+	ps->inst->str[3] = '\0';
+	ps->inst->next = NULL;
 }

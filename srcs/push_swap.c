@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbougssi <rbougssi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rbougssi <rbougssi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 04:33:09 by rbougssi          #+#    #+#             */
-/*   Updated: 2021/06/30 09:38:53 by rbougssi         ###   ########.fr       */
+/*   Updated: 2021/07/04 04:57:35 by rbougssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ int	arg_check(char **av)
 	return (n);
 }
 
-int	ps_check(t_ps *ps, int ac, char **av)
+int	ps_check(t_ps *ps, char **av)
 {
-	if (!arg_check(av) || ac < 2)
+	if (!arg_check(av))
 	{
 		write(1, "Error\n", 6);
 		return (0);
@@ -78,19 +78,99 @@ int	sorted(t_ps ps)
 	return (1);
 }
 
+t_lst*	change(t_lst *first, int c, char t, char r)
+{
+	t_lst *save;
+	t_lst *last;
+	t_lst *tmp;
+	int i;
+	
+	i = 0;
+	save = first;
+	while (first && first->str[0] == 'r' && first->str[c] == t)
+	{
+		i++;
+		last = first;
+		first = first->next;
+	}
+	if (!first)
+		return (first);
+	while (first && first->str[0] == 's')
+	{
+		last = first;
+		first = first->next;
+	}
+	while (first && first->str[0] == 'r' && first->str[c] == r && i)
+	{
+		i--;
+		save->str[c] = 'r';
+		save = save->next;
+		tmp = first->next;
+		free(last->next);
+		last->next = tmp;
+		first = tmp;
+	}
+	return (first);
+}
+
+t_lst*	check(t_lst *first)
+{
+	int c;
+	char t;
+	char r;
+
+	if (first->str[1] == 'r')
+	{
+		c = 2;
+		t = first->str[2];
+	}
+	else
+	{
+		c = 1;
+		t = first->str[1];
+	}
+	if (t == 'a')
+		r = 'b';
+	else
+		r = 'a';
+	return (change(first, c, t, r));
+}
+
+void	less(t_lst *first)
+{
+	while (first)
+	{
+		if (first->str[0] == 'r')
+			first = check(first);
+		first = first->next;
+	}
+
+}
+
 int	main(int ac, char **av)
 {
 	t_ps	ps;
+	t_lst	*first;
 
 	ps.a = NULL;
 	ps.b = NULL;
-	if (!ps_check(&ps, ac, av))
+	ps.inst = (t_lst *)malloc(sizeof(t_lst));
+	ps.inst->next = NULL;
+	first = ps.inst;
+	if (ac < 2 || !ps_check(&ps, av))
 		return (0);
 	if (sorted(ps))
-		excit(&ps);
+		return (0);
 	if (ps.size_a <= 5)
 		smol(&ps, 0);
-	a2b(&ps, ps.size_a);
+	akhor(&ps);
+	less(first);
+	while (first->next)
+	{
+		first = first->next;
+		printf("%s", first->str);
+	}
+	// a2b(&ps, ps.size_a);
 	ff(&ps);
 	return (0);
 }

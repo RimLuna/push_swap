@@ -6,7 +6,7 @@
 /*   By: rbougssi <rbougssi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 04:33:17 by rbougssi          #+#    #+#             */
-/*   Updated: 2021/06/30 04:33:18 by rbougssi         ###   ########.fr       */
+/*   Updated: 2021/07/04 03:57:12 by rbougssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 void	smowl(t_ps *ps)
 {
 	if (ps->a[0] > ps->a[1])
-		sa(&ps->a, ps->size_a, 'a');
+		sa(&ps->a, ps->size_a, 'a', &ps->inst);
 	if (sorted(*ps))
 		return ;
-	rra(&ps->a, ps->size_a, 'a');
+	rra(&ps->a, ps->size_a, 'a', &ps->inst);
 	smowl(ps);
 }
 
@@ -32,13 +32,13 @@ void	smol(t_ps *ps, int size)
 			size++;
 		}
 		else
-			ra(&ps->a, ps->size_a, 'a');
+			ra(&ps->a, ps->size_a, 'a', &ps->inst);
 	}
 	smowl(ps);
 	while (size-- > 0)
 	{
 		if (ps->size_b == 2 && ps->b[0] < ps->b[1])
-			sa(&ps->b, ps->size_b, 'b');
+			sa(&ps->b, ps->size_b, 'b', &ps->inst);
 		pa(ps);
 	}
 }
