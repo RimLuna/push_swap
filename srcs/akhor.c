@@ -35,11 +35,14 @@ void    pushToA(t_ps *ps, int len)
     int i;
     int j;
 
-    j = 35;
-    while(ps->size_b)
+    if (ps->ikhane > len)
+        ps->ikhane = len / 2;
+    j = ps->ikhane;
+    while (ps->size_b)
     {
         i = 0;
-        while (ps->size_b && i < 35)
+        while (ps->size_b && i < ps->ikhane)
+        {
             if (ps->b[0] >= ps->sorted[len - j])
             {
                 pa(ps);
@@ -47,7 +50,8 @@ void    pushToA(t_ps *ps, int len)
             }
             else
                 ra(&ps->b, ps->size_b, 'b',  &ps->inst);
-        j += 35;
+        }
+        j += ps->ikhane;
         if (len < j)
             j = len;
     }
@@ -61,7 +65,7 @@ void    pushToB(t_ps *ps, int l)
     int len;
 
     len = l / 2 + l % 2;
-    j = 35;
+    j = ps->ikhane;
     while(ps->size_a)
     {
         while (ps->size_a && ps->size_b < len + j)
@@ -69,7 +73,7 @@ void    pushToB(t_ps *ps, int l)
                 pb(ps);
             else
                 ra(&ps->a, ps->size_a, 'a', &ps->inst);
-        j += 35;
+        j += ps->ikhane;
         if (len < j)
             j = len - l % 2;
     }
@@ -79,11 +83,6 @@ int rotdir(int *a, t_ps *ps, int start)
 {
     int i;
 
-    i = 0;
-    // FILE *f = fopen("miaw", "a+");
-    // while (i < ps->size_a)
-    //     fprintf(f,"%d\n",ps->a[i++]);
-    // fclose(f);
     i = 1;
     while (i < ps->size_b / 2)
     {
@@ -96,47 +95,79 @@ int rotdir(int *a, t_ps *ps, int start)
     return (0);
 }
 
-void    sort3(t_ps *ps)
+int     findMax(t_ps *ps, int max)
 {
-    if (ps->size_a == 2 && ps->b[0] > ps->a[0] && ps->b[0] > ps->a[1])
+    int i;
+
+    i = 0;
+    while (i <= ps->size_a / 2)
     {
-        pa(ps);
-        ra(&ps->a, ps->size_a, 'a', &ps->inst);
+        if (ps->a[i] == max)
+        {
+            while (ps->a[ps->size_a - 1] != max)
+                ra(&ps->a, ps->size_a, 'a',  &ps->inst);
+            pa(ps);
+            return(ps->a[0]);
+        }
+        if (ps->a[ps->size_a - i - 1] == max)
+        {
+            while (ps->a[ps->size_a - 1] != max)
+                rra(&ps->a, ps->size_a, 'a',  &ps->inst);
+            pa(ps);
+            return(ps->a[0]);
+        }
+        i++;
     }
-    else if (ps->size_a > 2 && ps->b[0] > ps->a[0] && ps->b[0] > ps->a[1])
-    {
-        ra(&ps->a, ps->size_a, 'a', &ps->inst);
-        pa(ps);
-        sa(&ps->a, ps->size_a, 'a', &ps->inst);
-        rra(&ps->a, ps->size_a, 'a', &ps->inst);
-    }
-    else if (ps->size_a > 1 && ps->b[0] > ps->a[0])
-    {
-        pa(ps);
-        sa(&ps->a, ps->size_a, 'a', &ps->inst);
-    }
-    else
-        pa(ps);
+    return (max);
 }
 
-void push3a(t_ps *ps, int len)
+int    place(t_ps *ps, int max)
+{
+    if (ps->b[0] > max)
+        return (findMax(ps, max));
+    while (ps->a[0] < ps->b[0])
+        ra(&ps->a, ps->size_a, 'a',  &ps->inst);
+    while (ps->a[0] > ps->b[0] && ps->a[ps->size_a - 1] > ps->b[0]
+    && ps->a[ps->size_a - 1] != max)
+        rra(&ps->a, ps->size_a, 'a',  &ps->inst);
+    pa(ps);
+    if (ps->a[0] > max)
+        max = ps->a[0];
+    return (max);
+}
+
+void push7(t_ps *ps, int len)
 {
     int j;
+    int max;
+    int i;
 
-    j = 3;
+    i = 7;
+    if (ps->ikhane == 5)
+        i = 3;
+    j = i;
+    pa(ps);
+    max = ps->a[0];
+    pa(ps);
+    if (ps->a[0] > max)
+        max = ps->a[0];
     while(ps->size_b > 0)
     {
         while (ps->size_b > 0 && ps->size_a < j)
+        {
             if (ps->b[0] >= ps->sorted[len - j])
-                sort3(ps);
+                max = place(ps, max);
             else if (rotdir(ps->b, ps, len - j))
                 ra(&ps->b, ps->size_b, 'b',  &ps->inst);
             else
                 rra(&ps->b, ps->size_b, 'b',  &ps->inst);
-        j += 3;
+        }
+        j += i;
         if (len < j)
             j = len;
     }
+     while (ps->a[0] != ps->sorted[0])
+        rra(&ps->a, ps->size_a, 'a',  &ps->inst);
 }
 
 void    akhor(t_ps *ps)
@@ -148,6 +179,7 @@ void    akhor(t_ps *ps)
     half(ps, ps->size_a);
     pushToA(ps, ps->size_b);
     pushToB(ps, len);
-    push3a(ps, ps->size_b);
-    // printf("ret: %d\n", rotdir(ps->a, ps, len - 3));
+    push7(ps, ps->size_b);
+   
+    // //printf("ret: %d\n", rotdir(ps->a, ps, len - 3));
 }

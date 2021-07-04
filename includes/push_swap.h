@@ -6,7 +6,7 @@
 /*   By: rbougssi <rbougssi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 04:33:51 by rbougssi          #+#    #+#             */
-/*   Updated: 2021/07/04 03:41:36 by rbougssi         ###   ########.fr       */
+/*   Updated: 2021/07/04 17:39:02 by rbougssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,13 @@ typedef struct s_ps
 	int	*sorted;
 	int	size_a;
 	int	size_b;
+	int	ikhane;
 	t_lst *inst;
 }				t_ps;
 
+void			sorta(t_ps *ps);
 int				sorted(t_ps ps);
+void			push7(t_ps *ps, int len);
 int				init(char **av, int *tab);
 void			sa(int **a, int size_a, char what, t_lst **inst);
 void			ss(t_ps *ps);
