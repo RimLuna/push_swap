@@ -3,88 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbougssi <rbougssi@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: rbougssi <rbougssi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 04:33:09 by rbougssi          #+#    #+#             */
-/*   Updated: 2021/07/04 23:19:54 by rbougssi         ###   ########.fr       */
+/*   Updated: 2021/07/05 10:43:11 by rbougssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	arg_check(char **av)
+t_lst	*change(t_lst *first, int c, char t, char r)
 {
-	int	i;
-	int	j;
-	int	n;
+	t_lst	*save;
+	t_lst	*last;
+	t_lst	*tmp;
+	int		i;
 
-	j = 1;
-	n = 0;
-	while (av[j])
-	{
-		i = 0;
-		while (av[j][i])
-		{
-			if ((!ft_isdigit(av[j][i]) && (av[j][i] != ' '
-				&& av[j][i] != '-')) || (av[j][i + 1] == '-' &&
-				ft_isdigit(av[j][i]))
-				|| (av[j][i] == '-' && (!av[j][i + 1] || av[j][i + 1] == ' ')))
-				return (0);
-			i++;
-		}
-		if (!count_int(av[j]))
-			return (0);
-		n += count_int(av[j]);
-		j++;
-	}
-	return (n);
-}
-
-int	ps_check(t_ps *ps, char **av)
-{
-	if (!arg_check(av))
-	{
-		write(1, "Error\n", 6);
-		return (0);
-	}
-	else
-	{
-		ps->a = (int *)malloc(sizeof(int) * arg_check(av));
-		if (!ps->a)
-			excit(ps);
-		ps->size_a = arg_check(av);
-		ps->b = (int *)malloc(sizeof(int) * arg_check(av));
-		if (!ps->b)
-			excit(ps);
-		ps->size_b = 0;
-		if (!init(av, ps->a))
-			excit(ps);
-	}
-	return (1);
-}
-
-int	sorted(t_ps ps)
-{
-	int	i;
-
-	i = 0;
-	while (i < ps.size_a - 1)
-	{
-		if (ps.a[i] < ps.a[i + 1])
-			i++;
-		else
-			return (0);
-	}
-	return (1);
-}
-
-t_lst*	change(t_lst *first, int c, char t, char r)
-{
-	t_lst *save;
-	t_lst *last;
-	t_lst *tmp;
-	int i;
-	
 	i = 0;
 	save = first;
 	while (first && first->str[0] == 'r' && first->str[c] == t)
@@ -106,11 +40,11 @@ t_lst*	change(t_lst *first, int c, char t, char r)
 	return (first);
 }
 
-t_lst*	check(t_lst *first)
+t_lst	*check(t_lst *first)
 {
-	int c;
-	char t;
-	char r;
+	int		c;
+	char	t;
+	char	r;
 
 	if (first->str[1] == 'r')
 	{
@@ -135,19 +69,20 @@ void	less(t_lst *first)
 	{
 		if (first->str[0] == 'r')
 			first = check(first);
-		if (first)		
+		if (first)
 			first = first->next;
 	}
-
 }
 
-void last(t_lst *first)
+void	last(t_lst *first)
 {
+	int	i;
+
 	less(first);
 	while (first->next)
 	{
 		first = first->next;
-		int i = -1;
+		i = -1;
 		while (first->str[++i] != 0)
 			write(1, &first->str[i], 1);
 	}

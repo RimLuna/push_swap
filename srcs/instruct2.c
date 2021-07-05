@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   instruct2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbougssi <rbougssi@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: rbougssi <rbougssi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 19:02:44 by rbougssi          #+#    #+#             */
-/*   Updated: 2021/07/04 22:59:24 by rbougssi         ###   ########.fr       */
+/*   Updated: 2021/07/05 09:59:29 by rbougssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ void	ra(int **a, int size_a, char what, t_ps *ps)
 		ps->inst->str[2] = '\n';
 		ps->inst->str[3] = '\0';
 		ps->inst->next = NULL;
-
 	}
 }
 

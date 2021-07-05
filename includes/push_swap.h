@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbougssi <rbougssi@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: rbougssi <rbougssi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 04:33:51 by rbougssi          #+#    #+#             */
-/*   Updated: 2021/07/04 23:33:23 by rbougssi         ###   ########.fr       */
+/*   Updated: 2021/07/05 10:43:57 by rbougssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,35 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-typedef struct	s_lst
+typedef struct s_lst
 {
-	char str[5];
-	struct s_lst *next;
+	char			str[5];
+	struct s_lst	*next;
 }				t_lst;
 
 typedef struct s_ps
 {
-	int	*a;
-	int	*b;
-	int	*sorted;
-	int	size_a;
-	int	size_b;
-	int	ikhane;
-	t_lst *inst;
-	t_lst *first;
+	int		*a;
+	int		*b;
+	int		*sorted;
+	int		size_a;
+	int		size_b;
+	int		ikhane;
+	t_lst	*inst;
+	t_lst	*first;
 }				t_ps;
 
+int				arg_check(char **av);
+int				ps_check(t_ps *ps, char **av);
+void			normpush7(t_ps *ps, int *max);
+int				getsteps(int ikhane);
+void			push7(t_ps *ps, int len);
+int				place(t_ps *ps, int max);
+int				findmax(t_ps *ps, int max);
+int				rotdir(int *a, t_ps *ps, int start);
+void			push2b(t_ps *ps, int l);
+void			push2a(t_ps *ps, int len);
+void			half(t_ps *ps, int len);
 void			sorta(t_ps *ps);
 int				sorted(t_ps ps);
 void			push7(t_ps *ps, int len);
@@ -57,5 +68,5 @@ void			ff(t_ps *ps);
 void			swap(int *a, int *b);
 int				ft_isdigit(int c);
 int				count_int(char *av);
-void    		algikhane(t_ps *ps);
+void			algikhane(t_ps *ps);
 #endif

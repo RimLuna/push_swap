@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   instruct.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbougssi <rbougssi@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: rbougssi <rbougssi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 19:02:34 by rbougssi          #+#    #+#             */
-/*   Updated: 2021/07/04 23:00:29 by rbougssi         ###   ########.fr       */
+/*   Updated: 2021/07/05 09:59:04 by rbougssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	sa(int **a, int size_a, char what, t_ps *ps)
 		ps->inst->next = (t_lst *)malloc(sizeof(t_lst));
 		if (!ps->inst->next)
 			excit(ps);
-		ps->inst = ps->inst->next; 
+		ps->inst = ps->inst->next;
 		ps->inst->str[0] = 's';
 		ps->inst->str[1] = what;
 		ps->inst->str[2] = '\n';
@@ -37,7 +37,7 @@ void	ss(t_ps *ps)
 	ps->inst->next = (t_lst *)malloc(sizeof(t_lst));
 	if (!ps->inst->next)
 		excit(ps);
-	ps->inst = ps->inst->next; 
+	ps->inst = ps->inst->next;
 	ps->inst->str[0] = 's';
 	ps->inst->str[1] = 's';
 	ps->inst->str[2] = '\n';
@@ -63,7 +63,7 @@ void	pa(t_ps *ps)
 	ps->inst->next = (t_lst *)malloc(sizeof(t_lst));
 	if (!ps->inst->next)
 		excit(ps);
-	ps->inst = ps->inst->next; 
+	ps->inst = ps->inst->next;
 	ps->inst->str[0] = 'p';
 	ps->inst->str[1] = 'a';
 	ps->inst->str[2] = '\n';
@@ -89,7 +89,7 @@ void	pb(t_ps *ps)
 	ps->inst->next = (t_lst *)malloc(sizeof(t_lst));
 	if (!ps->inst->next)
 		excit(ps);
-	ps->inst = ps->inst->next; 
+	ps->inst = ps->inst->next;
 	ps->inst->str[0] = 'p';
 	ps->inst->str[1] = 'b';
 	ps->inst->str[2] = '\n';

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ff.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbougssi <rbougssi@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: rbougssi <rbougssi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 19:02:07 by rbougssi          #+#    #+#             */
-/*   Updated: 2021/07/04 22:31:50 by rbougssi         ###   ########.fr       */
+/*   Updated: 2021/07/05 09:19:16 by rbougssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ff(t_ps *ps)
 {
-	t_lst *tmp;
+	t_lst	*tmp;
 
 	free(ps->sorted);
 	while (ps->first)
