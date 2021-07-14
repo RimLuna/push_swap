@@ -6,7 +6,7 @@ SFILES := ff.c helper.c helper2.c \
 		push_swap.c imzine.c algikhane.c \
 		check.c
 
-CC = clang
+CC = gcc
 AR = ar rc
 IPATH = includes/
 OPATH = obj

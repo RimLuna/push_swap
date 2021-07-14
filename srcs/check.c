@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbougssi <rbougssi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rbougssi <rbougssi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 10:42:32 by rbougssi          #+#    #+#             */
-/*   Updated: 2021/07/05 10:42:47 by rbougssi         ###   ########.fr       */
+/*   Updated: 2021/07/14 04:49:21 by rbougssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@ int	ps_check(t_ps *ps, char **av)
 	}
 	else
 	{
-		ps->a = (int *)malloc(sizeof(int) * arg_check(av));
+		ps->size_a = arg_check(av);
+		ps->a = (int *)malloc(sizeof(int) * ps->size_a);
 		if (!ps->a)
 			excit(ps);
-		ps->size_a = arg_check(av);
-		ps->b = (int *)malloc(sizeof(int) * arg_check(av));
+		ps->b = (int *)malloc(sizeof(int) * ps->size_a);
 		if (!ps->b)
 			excit(ps);
 		ps->size_b = 0;
