@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbougssi <rbougssi@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: rbougssi <rbougssi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 04:33:09 by rbougssi          #+#    #+#             */
-/*   Updated: 2021/07/14 04:43:00 by rbougssi         ###   ########.fr       */
+/*   Updated: 2021/07/16 11:08:21 by rbougssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,14 +95,14 @@ int	main(int ac, char **av)
 
 	ps.a = NULL;
 	ps.b = NULL;
+	if (ac < 2 || !ps_check(&ps, av))
+		ff(&ps);
+	if (sorted(ps))
+		ff(&ps);
 	ps.inst = (t_lst *)malloc(sizeof(t_lst));
 	ps.inst->next = NULL;
 	first = ps.inst;
 	ps.first = first;
-	if (ac < 2 || !ps_check(&ps, av))
-		return (0);
-	if (sorted(ps))
-		return (0);
 	ps.ikhane = 15 + ps.size_a / 20;
 	if (ps.size_a <= 5)
 		imzine(&ps, 0);
