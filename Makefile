@@ -6,12 +6,12 @@ SFILES := ff.c helper.c helper2.c \
 		push_swap.c imzine.c algikhane.c \
 		check.c
 
-CC = gcc
+CC = clang
 AR = ar rc
 IPATH = includes/
 OPATH = obj
 IFLAG = -I $(IPATH)
-CFLAGS = -Wall -Wextra -Werror $(IFLAG)
+CFLAGS = -g -Wall -Wextra -Werror $(IFLAG)
 OBJ = $(SFILES:.c=.o)
 OBJS = $(addprefix $(OPATH)/, $(OBJ))
 SRCS = $(addprefix $(SPATH)/, $(SFILES))

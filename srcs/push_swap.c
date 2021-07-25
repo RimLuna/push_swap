@@ -6,7 +6,7 @@
 /*   By: rbougssi <rbougssi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 04:33:09 by rbougssi          #+#    #+#             */
-/*   Updated: 2021/07/16 11:08:21 by rbougssi         ###   ########.fr       */
+/*   Updated: 2021/07/25 12:13:35 by rbougssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,12 +93,12 @@ int	main(int ac, char **av)
 	t_ps	ps;
 	t_lst	*first;
 
-	ps.a = NULL;
-	ps.b = NULL;
-	if (ac < 2 || !ps_check(&ps, av))
+	ps = (t_ps){0};
+	if (ac < 2 || !ps_check(&ps, av) || sorted(ps))
+	{
 		ff(&ps);
-	if (sorted(ps))
-		ff(&ps);
+		exit (1);
+	}
 	ps.inst = (t_lst *)malloc(sizeof(t_lst));
 	ps.inst->next = NULL;
 	first = ps.inst;
